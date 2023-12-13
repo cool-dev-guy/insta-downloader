@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reel Downloader</title>
+    <style>
+      html,body{
+        color:yellowgreen;
+        text-shadow:0px 0px 3px yellowgreen;
+        font-family:sans-serif;
+        width:100%;
+        height:100%;
+        display:grid;
+        place-items:center;
+        background-color: #111111;
+        opacity: 1;
+        background-image: radial-gradient(rgba(48,233,47,0.1) 1px, #111111 1px);
+        background-size: 20px 20px;
+      }
+      input,button{
+        padding:10px;
+        border:1px solid yellowgreen;
+        background:#090909;
+        color:yellowgreen;
+      }
+    </style>
+  </head>
+  <body>
+  <h1 align="center">Instagram Reel Downloader</h1>
+  <div><input placeholder="Enter URL here." type="text" id="url"><button onclick="get()">GET</button></div>
+  </body>
+  <script>
+    function get(){
+      const url = document.getElementById('url').value;
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET',`https://insta-pauser-cool-guys-projects.vercel.app/insta?url=${url}`, true);
+      xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          window.open(response.videoUrl, '_blank');
+        } else {
+          console.error('Request failed with status:', xhr.status);
+        }
+      }
+      };
+      xhr.send();
+    }
+  </script>
+</html>
